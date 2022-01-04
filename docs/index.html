@@ -1,17 +1,113 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <title>Document</title>
+    <script src="frog-component.js"></script>
+    <script src="frograce.js"></script>
+    <title>Frog Race</title>
 </head>
 <body>
     <a-scene>
-        <!-- eigene Inhalte -->
-        <a-box position="0 1 -5">
-        </a-box>
+        <a-assets>
+            <!-- <a-asset-item id="frogModel" src="assets/frog.gltf"></a-asset-item> -->
+            <img id="sky" src="assets/sky.jpg">
+            <img id="water" src="assets/water_green.jpg">
+            <img id="stone-rough" src="assets/stone_rough.jpg">
+            <img id="stones" src="assets/stones.jpg">
+            <audio id="frogsound" src="assets/frogsound_rep.mp3"></audio>
+            <img id="pebbles" src="assets/Pebbles_023_BaseColor.jpg">
+            <img id="pebbles-normal" src="assets/Pebbles_023_Normal.jpg">
+            <img id="pebbles-roughness" src="assets/Pebbles_023_Roughness.jpg">
+        </a-assets>
+        
+        <!-- TODO: Animation des Flusses ... soll fließen -->
+
+        <a-entity id="world">
+            <!-- <a-light
+                type="directional"
+                color="#555"
+                intensity=".1"
+                position=".8 1 -1"></a-light>
+            <a-light
+                type="ambient"></a-light> -->
+            <a-sky
+                src="#sky"
+                repeat="4 4">
+            </a-sky>
+            <a-plane
+                id="floor"
+                position="-10 0 0"
+                rotation="-90 0 0"
+                geometry="
+                    width: 40;
+                    height: 100;
+                "
+                material="
+                    src: #pebbles;
+                    repeat: 20 50;
+                    normalMap: #pebbles-normal;
+                    normalTextureRepeat: 20 50;
+                    roughnessMap: #pebbles-roughness;
+                    roughnessTextureRepeat: 20 50;
+                "
+                sound="
+                    src: #frogsound;
+                    loop: true;
+                    preload: auto;
+                "></a-plane>
+            <a-plane
+                id="stream"
+                position="17.1 -1.9 -5"
+                rotation="-90 0 0"
+                geometry="
+                    width: 14;
+                    height: 90;
+                "
+                material="
+                    src: #water;
+                    repeat: 2 20;
+                    roughness: 1;
+                    transparent: true;
+                    opacity: .7;
+                    offset: 1 1;
+                "></a-plane>
+            <a-plane
+                id="finish"
+                position="17.1 -1.8 43"
+                rotation="-92 0 0"
+                geometry="
+                    width: 14;
+                    height: 14;
+                "
+                material="
+                    src: #stone-rough;
+                    color: tan;
+                "></a-plane>
+
+            <a-box
+                id="wall"
+                position="10.1 -.9 0"
+                geometry="
+                    width: .2;
+                    height: 2;
+                    depth: 100;
+                "
+                material="
+                    src: #stone-rough;
+                    repeat: .5 200;
+                "></a-box>
+        </a-entity>
+
+        <a-entity frog='position: 14 -1.9 22'></a-entity>
+        <a-entity frog='position: 20 -1.9 -48'></a-entity>
+        
+        <a-camera>
+            <a-cursor raycaster="objects: a-entity[frog]"></a-cursor>
+        </a-camera>
+
     </a-scene>
 </body>
 </html>
