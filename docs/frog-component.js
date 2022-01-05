@@ -30,6 +30,7 @@ AFRAME.registerComponent('frog', {
             autoplay: false
         });
         
+        //TODO: jump in curve instead of linear movement
         let isAtTheEnd = false
         function jump() {
             if (isAtTheEnd) {

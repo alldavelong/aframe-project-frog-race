@@ -22,6 +22,8 @@
             <img id="pebbles" src="assets/Pebbles_023_BaseColor.jpg">
             <img id="pebbles-normal" src="assets/Pebbles_023_Normal.jpg">
             <img id="pebbles-roughness" src="assets/Pebbles_023_Roughness.jpg">
+            <img id="wood" src="assets/Wood_Crate_001_basecolor.jpg">
+            <img id="wood-normal" src="assets/Wood_Crate_001_normal.jpg">
         </a-assets>
         
         <!-- TODO: Animation des Flusses ... soll fließen -->
@@ -48,7 +50,7 @@
                 "
                 material="
                     src: #pebbles;
-                    repeat: 20 50;
+                    repeat: 5 50;
                     normalMap: #pebbles-normal;
                     normalTextureRepeat: 20 50;
                     roughnessMap: #pebbles-roughness;
@@ -106,15 +108,41 @@
                     src: #stone-rough;
                     repeat: .5 200;
                 "></a-box>
+
+            <a-entity
+                id="billboard"
+                position="5 3 -50">
+                <a-entity
+                    geometry="
+                    primitive: plane;
+                    width: 10;
+                    height: 6;
+                    "
+                    material="
+                    src: #wood;
+                    normalMap: #wood-normal;
+                    "
+                    ></a-entity>
+                    
+                <a-entity 
+                scale="8 8 8"
+                text="
+                    value: Look at the frogs to your right to make them move!;
+                    align: center;
+                    color: white;
+                    wrap-count: 15;
+                    "></a-entity>
+
+            </a-entity>
         </a-entity>
 
-        <a-entity frog='position: 14 -1.9 22'></a-entity>
+        <a-entity frog='position: 14 -1.9 -48'></a-entity>
         <a-entity frog='position: 20 -1.9 -48'></a-entity>
         <!-- <a-gltf-model position="14 -1.9 22" src="#frogModel"></a-gltf-model>
         <a-gltf-model position="20 -1.9 -48" src="#frogModel"></a-gltf-model> -->
 
         
-        <a-camera position="8 1.6 0" camposition>
+        <a-camera position="8 1.6 -10" camposition>
             <a-cursor raycaster="objects: a-entity[frog]"></a-cursor>
         </a-camera>
 

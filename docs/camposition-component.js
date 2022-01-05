@@ -1,6 +1,6 @@
 // const floor_limits = getFloorLimits();
 const floor_limits = {
-    min: {x: 0, z: -50},
+    min: {x: 0, z: -49},
     max: {x: 10, z: 50}
 };
 
