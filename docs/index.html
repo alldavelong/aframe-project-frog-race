@@ -6,13 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="frog-component.js"></script>
+    <script src="camposition-component.js"></script>
     <script src="frograce.js"></script>
     <title>Frog Race</title>
 </head>
 <body>
     <a-scene>
         <a-assets>
-            <!-- <a-asset-item id="frogModel" src="assets/frog.gltf"></a-asset-item> -->
+            <a-asset-item id="frogModel" src="assets/frog.gltf"></a-asset-item>
             <img id="sky" src="assets/sky.jpg">
             <img id="water" src="assets/water_green.jpg">
             <img id="stone-rough" src="assets/stone_rough.jpg">
@@ -39,10 +40,10 @@
             </a-sky>
             <a-plane
                 id="floor"
-                position="-10 0 0"
+                position="5 0 0"
                 rotation="-90 0 0"
                 geometry="
-                    width: 40;
+                    width: 10;
                     height: 100;
                 "
                 material="
@@ -56,7 +57,6 @@
                 sound="
                     src: #frogsound;
                     loop: true;
-                    preload: auto;
                 "></a-plane>
             <a-plane
                 id="stream"
@@ -73,6 +73,13 @@
                     transparent: true;
                     opacity: .7;
                     offset: 1 1;
+                "
+                aaanimation=" NOT WORKING YET !!
+
+                    property: components.material.material.map.offset.x;
+                    to: 1;
+                    loop: true;
+                    autoplay: true;
                 "></a-plane>
             <a-plane
                 id="finish"
@@ -103,8 +110,11 @@
 
         <a-entity frog='position: 14 -1.9 22'></a-entity>
         <a-entity frog='position: 20 -1.9 -48'></a-entity>
+        <!-- <a-gltf-model position="14 -1.9 22" src="#frogModel"></a-gltf-model>
+        <a-gltf-model position="20 -1.9 -48" src="#frogModel"></a-gltf-model> -->
+
         
-        <a-camera>
+        <a-camera position="8 1.6 0" camposition>
             <a-cursor raycaster="objects: a-entity[frog]"></a-cursor>
         </a-camera>
 
