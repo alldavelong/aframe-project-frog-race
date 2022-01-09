@@ -1,8 +1,7 @@
 let frogCount = 0;
 AFRAME.registerComponent('frog', {
     schema: {
-        scale: {type: 'string', default: '.6 .6 .6'},
-        position: {type: 'string'}
+        scale: {type: 'string', default: '.6 .6 .6'}
     },
 
     init: function () {
@@ -13,7 +12,6 @@ AFRAME.registerComponent('frog', {
         // this was the only suitable one found with CC0 licensing
         el.setAttribute('gltf-model', 'assets/frog.gltf');
         el.setAttribute('scale', this.data.scale);
-        el.setAttribute('position', this.data.position);
         el.setAttribute('sound', {
             src: 'assets/frogsound_rep.mp3',
             loop: true,
