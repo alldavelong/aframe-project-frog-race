@@ -6,28 +6,22 @@ AFRAME.registerComponent('cam_movement', {
     init: function () {
         this.hasBounds = true;
         const boundsData = this.data.boundsOf;
-        window.addEventListener('load', () => {
-            if (boundsData == null) {
-                this.hasBounds = false;
-                console.error("No 'boundsOf' argument was passed "
-                + "to the component, camera movement will not be limited.")
-                return;
-            }
-            this.movement_limits = this.getMovementLimits(
-                boundsData.getAttribute('position'),
-                boundsData.getAttribute('geometry'));
-            console.debug('movement_limits: loaded, camera movement now limited');
-        });
+
+        if (boundsData === null) {
+            this.hasBounds = false;
+            console.debug("No bounds were passed to the " +
+            "component, camera movement will not be limited.")
+            return;
+        }
+
+        this.movement_limits = this.getMovementLimits(
+            boundsData.getAttribute('position'),
+            boundsData.getAttribute('geometry'));
     },
 
     tick: function () {
-        if (!this.hasBounds) {
-            return;
-        } else if (typeof this.movement_limits !== 'undefined') {
+        if (this.hasBounds) {
             this.updateCamPositionWithinBounds();
-        } else if (typeof this.wasDOMNotLoadedWarningPrinted === 'undefined') {
-            console.debug('movement_limits: DOM tree not loaded yet');
-            this.wasDOMNotLoadedWarningPrinted = true;
         }
     },
 
