@@ -10,3 +10,5 @@ The requirements for this project were:
 * at least one imported gltf-model
 * at least one custom light
 * at least one added sound effect
+
+Check out the frog race at https://alldavelong.github.io/aframe-project-frog-race/.
