@@ -17,7 +17,6 @@
             <img id="sky" src="assets/sky.jpg">
             <img id="water" src="assets/water_green.jpg">
             <img id="stone-rough" src="assets/stone_rough.jpg">
-            <img id="stones" src="assets/stones.jpg">
             <audio id="frogsound" src="assets/frogsound_rep.mp3"></audio>
             <img id="pebbles" src="assets/Pebbles_023_BaseColor.jpg">
             <img id="pebbles-normal" src="assets/Pebbles_023_Normal.jpg">
@@ -136,13 +135,11 @@
             </a-entity>
         </a-entity>
 
-        <!-- <a-entity frog='position: 14 -1.9 -48'></a-entity> -->
+        <a-entity frog='position: 14 -1.9 -48' jumper></a-entity>
         <a-entity frog='position: 20 -1.9 -48' jumper></a-entity>
-    
-        <a-box id="box" position="8 .5 -15" jumper></a-box>
-        
+            
         <a-camera position="8 1.6 -10" cam_movement="boundsOf: #floor">
-            <a-cursor raycaster="objects: *[jumper]"></a-cursor>
+            <a-cursor raycaster="objects: a-entity[jumper]"></a-cursor>
         </a-camera>
         
 

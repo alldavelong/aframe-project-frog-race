@@ -31,8 +31,4 @@ AFRAME.registerComponent('frog', {
             }
         });
     }
-
-
-
-    
 });
