@@ -9,6 +9,8 @@ AFRAME.registerComponent('frog', {
         const el = this.el;
         
         el.id = `frog${++frogCount}`;
+        // TODO: maybe replace for a frog-model that isnt't >80 MB big
+        // this was the only suitable one found with CC0 licensing
         el.setAttribute('gltf-model', 'assets/frog.gltf');
         el.setAttribute('scale', this.data.scale);
         el.setAttribute('position', this.data.position);

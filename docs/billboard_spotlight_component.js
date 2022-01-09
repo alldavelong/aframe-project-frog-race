@@ -5,17 +5,35 @@ AFRAME.registerComponent('billboard_spotlight', {
     },
 
     init: function () {
+        const radius = .1;
+        const height = .3;
         const el = this.el;
-        
-        el.id = `frog${++instanceCount}`;
+
+        el.id = `spotlight${++instanceCount}`;
+        el.setAttribute('geometry', {
+            primitive: 'cylinder',
+            radius: radius,
+            height: height
+        });
+        el.setAttribute('material', 'color', '#444');
+
         el.setAttribute('position', this.data.position);
-        el.setAttribute('light', {
+        let pos = el.getAttribute('position');
+        el.setAttribute('position', `${pos.x} ${pos.y} ${pos.z + radius}`);
+        
+        this.placeLight();
+    },
+
+    placeLight: function () {
+        const light = document.createElement('a-entity');
+        light.setAttribute('light', {
             type: 'spot',
-            angle: 90,
+            angle: 55,
             distance: 5.5,
             decay: 2,
             intensity: 1.8
         });
-        
-    },
+        light.setAttribute('rotation', '-50 0 0');
+        this.el.appendChild(light);
+    }
 });
