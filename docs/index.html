@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="frog-component.js"></script>
+    <script src="jumper-component.js"></script>
     <script src="cam_movement-component.js"></script>
     <title>Frog Race</title>
 </head>
@@ -136,18 +137,14 @@
         </a-entity>
 
         <!-- <a-entity frog='position: 14 -1.9 -48'></a-entity> -->
-        <a-entity frog='position: 20 -1.9 -48'></a-entity>
+        <a-entity frog='position: 20 -1.9 -48' jumper></a-entity>
     
-        <a-box id="box" position="8 .5 -15"></a-box>
+        <a-box id="box" position="8 .5 -15" jumper></a-box>
         
         <a-camera position="8 1.6 -10" cam_movement="boundsOf: #floor">
-            <a-cursor raycaster="objects: a-entity[frog]"></a-cursor>
+            <a-cursor raycaster="objects: *[jumper]"></a-cursor>
         </a-camera>
-
-
-
-        <!-- <a-gltf-model position="14 -1.9 22" src="#frogModel"></a-gltf-model>
-        <a-gltf-model position="20 -1.9 -48" src="#frogModel"></a-gltf-model> -->
+        
 
     </a-scene>
 </body>
