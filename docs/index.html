@@ -8,12 +8,12 @@
     <script src="frog-component.js"></script>
     <script src="jumper-component.js"></script>
     <script src="cam_movement-component.js"></script>
+    <script src="billboard_spotlight_component.js"></script>
     <title>Frog Race</title>
 </head>
 <body>
     <a-scene>
         <a-assets>
-            <a-asset-item id="frogModel" src="assets/frog.gltf"></a-asset-item>
             <img id="sky" src="assets/sky.jpg">
             <img id="water" src="assets/water_green.jpg">
             <img id="stone-rough" src="assets/stone_rough.jpg">
@@ -25,20 +25,20 @@
             <img id="wood-normal" src="assets/Wood_Crate_001_normal.jpg">
         </a-assets>
         
-        <!-- TODO: Animation des Flusses ... soll fließen -->
-
         <a-entity id="world">
-            <!-- <a-light
-                type="directional"
-                color="#555"
-                intensity=".1"
-                position=".8 1 -1"></a-light>
             <a-light
-                type="ambient"></a-light> -->
+                type="directional"
+                intensity=".6"
+                position=".8 .8 -1"></a-light>
+
+            <a-light
+                type="ambient"
+                intensity=".6"></a-light>
+
             <a-sky
                 src="#sky"
-                repeat="4 4">
-            </a-sky>
+                repeat="4 4"></a-sky>
+
             <a-plane
                 id="floor"
                 position="5 0 0"
@@ -59,6 +59,8 @@
                     src: #frogsound;
                     loop: true;
                 "></a-plane>
+
+            <!-- TODO: animation of the stream, it could flow -->
             <a-plane
                 id="stream"
                 position="17.1 -1.9 -5"
@@ -74,14 +76,8 @@
                     transparent: true;
                     opacity: .7;
                     offset: 1 1;
-                "
-                aaanimation=" NOT WORKING YET !!
-
-                    property: components.material.material.map.offset.x;
-                    to: 1;
-                    loop: true;
-                    autoplay: true;
                 "></a-plane>
+
             <a-plane
                 id="finish"
                 position="17.1 -1.8 43"
@@ -105,12 +101,13 @@
                 "
                 material="
                     src: #stone-rough;
-                    repeat: .5 200;
+                    repeat: .2 150;
                 "></a-box>
 
             <a-entity
                 id="billboard"
                 position="5 3 -50">
+
                 <a-entity
                     geometry="
                     primitive: plane;
@@ -120,17 +117,19 @@
                     material="
                     src: #wood;
                     normalMap: #wood-normal;
-                    "
-                    ></a-entity>
+                    "></a-entity>
                     
                 <a-entity 
-                scale="8 8 8"
-                text="
-                    value: Look at the frogs to your right to make them move!;
-                    align: center;
-                    color: white;
-                    wrap-count: 15;
+                    scale="8 8 8"
+                    text="
+                        value: Look at the frogs to your right to make them move!;
+                        align: center;
+                        color: white;
+                        wrap-count: 15;
                     "></a-entity>
+                
+                <a-entity billboard_spotlight="position: -2 3 .8"></a-entity>
+                <a-entity billboard_spotlight="position: 2 3 .8"></a-entity>
 
             </a-entity>
         </a-entity>
