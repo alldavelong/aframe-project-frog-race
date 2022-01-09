@@ -34,6 +34,7 @@ AFRAME.registerComponent('frog', {
         });
         
         //TODO: jump in curve instead of linear movement
+        //TODO: separate jumper-component for jumping
         let isAtTheEnd = false
         function jump() {
             if (isAtTheEnd) {
@@ -72,17 +73,36 @@ AFRAME.registerComponent('frog', {
                 isAtTheEnd = true;
             }
         });
+        
+        this.startFrogSoundOnFirstKeyDown();
+    },
+    
+    startFrogSoundOnFirstKeyDown: function () {
+        window.addEventListener('keydown', () => {
+            if (typeof this.firstKeyDown === 'undefined') {
+                this.el.components.sound.playSound();
+                this.firstKeyDown = true;
+            }
+        });
     }
-    // function animateBox(x, y, z) {
-    //     let box = document.getElementById('box');
-    //     box.setAttribute('animation', 'property', 'position');
-    //     box.setAttribute('animation', 'to', `${x} ${y+2} ${z}`);
-    //     box.setAttribute('animation', 'easing', 'easeOutExpo');
-    //     box.components.animation.beginAnimation();
-    //     box.setAttribute('animation__2', 'property', 'position');
-    //     box.setAttribute('animation__2', 'to', `${x} ${y} ${z}`);
-    //     box.setAttribute('animation__2', 'startEvents', 'animationcomplete');
-    //     box.setAttribute('animation__2', 'dur', '200');
-    // }
+
+
+
+
+
+
+
     
 });
+
+// function animateBox(x, y, z) {
+//     let box = document.getElementById('box');
+//     box.setAttribute('animation', 'property', 'position');
+//     box.setAttribute('animation', 'to', `${x} ${y+2} ${z}`);
+//     box.setAttribute('animation', 'easing', 'easeOutExpo');
+//     box.components.animation.beginAnimation();
+//     box.setAttribute('animation__2', 'property', 'position');
+//     box.setAttribute('animation__2', 'to', `${x} ${y} ${z}`);
+//     box.setAttribute('animation__2', 'startEvents', 'animationcomplete');
+//     box.setAttribute('animation__2', 'dur', '200');
+// }
